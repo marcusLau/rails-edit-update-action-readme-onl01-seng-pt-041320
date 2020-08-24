@@ -20,4 +20,19 @@ class ArticlesController < ApplicationController
   end
 
   # add edit and update methods here
+
+  # renders the edit.html.erb form
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  # handles the update logic for said article
+  def update 
+    # raise params.inspect
+    @article = Article.find(params[:id])
+    @article.update(
+      title: params[:article][:title],
+      description: params[:article][:description])
+    redirect_to article_path(@article)
+  end
 end
